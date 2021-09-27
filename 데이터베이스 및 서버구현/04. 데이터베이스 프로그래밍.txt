@@ -34,6 +34,7 @@ DriverManager 클래스  . getConnection() --> Connection 인스턴스 반환
 
 6. CallableStatement 인터페이스 - 프로시저 호출
 
+
 P269
 저장프로그램 - 사용자 정의 함수
 1. 프로시저(Procedure)
@@ -47,8 +48,97 @@ CALL 함수명;
 P270 -> 숫자 투입 하면 -> 0 부터 증감 -> 인수보다 커질때까지 증감
 변수 @변수 -> 전역변수
 
+P271 -> Book 테이블에 투플을 삽입하는 프로시저
+IN 변수명 -> 입력되는 값
+OUT 변수명 -> 반환값
+P276 - Book 테이블에 저장된 도서의 평균 가격
+
+273
+DELIMITER [문자]
+....
+[문자]
+
+BEGIN
+함수 실행 영역
+END;
+
+IF <조건> THEN [구현부분...]
+ELSE [구현구분 ...]
+END IF;
+
+[label:]LOOP  - LEAVE를 만날 때 까지 반복
+실행영역
+[LEAVE [label:]]
+END LOOP;
+
+WHILE <조건> DO
+반복되는 구간
+[BREAK - 반복 중단|CONTINUE - 건너뛰기];
+END WHILE;
+
+REPEAT 실행 영역 UNTIL 조건(참) -> 정지  END REPEAT;
+
+RETURN
+
+커서를 사용하는 프로시저
+P277
+CURSOR 커서 이름 CURSOR FOR
+
+OPEN 커서 이름;
+
+CLOSE 커서 이름;
+FETCH 커서 이름 INTO 변수
+
+
+SELECT saleprice FROM Orders;
+
+FETCH 커서명 INTO Price
+
 
 2. 트리거 (Trigger)
 SQL 실행 전, 후
+(INSERT, DELETE, UPDATE) - 데이터 변경이 발생하는 전 후에 처리되는 부분
+BEFORE (실행 전)
+INSTEAD OF 정의된 SQL 대신
+AFTER (실행 후)
+
+P279
+
 
 3. 사용자 정의 함수
+SQL 구문안에서 사용할 수 있는 함수
+CREATE FUNCTION 함수명(.......) RETURNS 반환값 타입
+BEGIN
+	......
+
+	RETURN 반환값;
+END;
+
+권한 부여
+root를 통해서 권한부여
+SET global log_bin_trust_function_creators=ON;
+
+P281- 판매된 도서에 대한 이익을 계산하는 함수
+aA!12345
+
+P282 - 표5-4
+프로시저
+CREATE PROCEDURE ...
+CALL 프로시저명
+
+트리거
+CREATE TRIGGER ....
+INSERT, DELETE, UPDATE문이 실행 될때 (전(BEFORE), 후(AFTER), 대신해서(INSTEAD OF))
+
+사용자 정의 함수
+CREATE FUNCTION .....
+SELECT 구문에서
+
+
+DROP PROCEDURE 프로시저명;
+DROP TRIGGER 트리명명;
+DROP FUNCTION 함수명;
+
+
+JAVA SQL 공부시 참고(16장)
+http://yonggyo.com:60000/yonggyo/lecture/-/tree/master/10.JSP
